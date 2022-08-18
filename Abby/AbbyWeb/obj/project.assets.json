@@ -1864,19 +1864,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\keita\\.nuget\\packages\\": {}
+    "C:\\Users\\Owner\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\keita\\source\\repos\\Abby\\AbbyWeb\\AbbyWeb.csproj",
+      "projectUniqueName": "C:\\Users\\Owner\\source\\repos\\RentalMovieApp\\Abby\\AbbyWeb\\AbbyWeb.csproj",
       "projectName": "AbbyWeb",
-      "projectPath": "C:\\Users\\keita\\source\\repos\\Abby\\AbbyWeb\\AbbyWeb.csproj",
-      "packagesPath": "C:\\Users\\keita\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\keita\\source\\repos\\Abby\\AbbyWeb\\obj\\",
+      "projectPath": "C:\\Users\\Owner\\source\\repos\\RentalMovieApp\\Abby\\AbbyWeb\\AbbyWeb.csproj",
+      "packagesPath": "C:\\Users\\Owner\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Owner\\source\\repos\\RentalMovieApp\\Abby\\AbbyWeb\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\keita\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Owner\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1935,7 +1935,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

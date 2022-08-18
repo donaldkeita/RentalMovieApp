@@ -32,15 +32,17 @@ namespace AbbyWeb.Pages.Categories
         {
             if (Category.Name == Category.DisplayOrder.ToString())
             {
-                ModelState.AddModelError(string.Empty, "The value entered in DisplayOrder cannot exactly match the value in Name");
+                ModelState.AddModelError("Category.Name", "The value entered in DisplayOrder cannot exactly match the value in Name");
             }
 
             if(ModelState.IsValid)
             {
                 await _db.Category.AddAsync(Category);
                 await _db.SaveChangesAsync();
+                TempData["success"] = "Category created successfully";
                 return RedirectToPage("Index");
             }
+            // return back to the same page
             return Page();
         }
     }

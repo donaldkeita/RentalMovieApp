@@ -9,6 +9,7 @@ namespace AbbyWeb.Model
         [Required]
         public string Name { get; set; }
         [Display(Name="Display Order")]
+        [Range(1,50,ErrorMessage="Order quantity must be between 1 and 50.")]
         public int DisplayOrder { get; set; }
     }
 }
