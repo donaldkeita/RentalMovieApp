@@ -1116,3 +1116,11 @@ C:\Users\Owner\source\repos\RentalMovieApp\BulkyBookWeb\bin\Debug\net6.0\Microso
 C:\Users\Owner\source\repos\RentalMovieApp\BulkyBookWeb\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\Owner\source\repos\RentalMovieApp\BulkyBookWeb\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\Owner\source\repos\RentalMovieApp\BulkyBookWeb\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Owner\source\repos\RentalMovieApp\BulkyBookWeb\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Owner\source\repos\RentalMovieApp\BulkyBookWeb\bin\Debug\net6.0\Microsoft.Build.Framework.dll
+C:\Users\Owner\source\repos\RentalMovieApp\BulkyBookWeb\bin\Debug\net6.0\Microsoft.Build.Tasks.Core.dll
+C:\Users\Owner\source\repos\RentalMovieApp\BulkyBookWeb\bin\Debug\net6.0\Microsoft.Build.Utilities.Core.dll
+C:\Users\Owner\source\repos\RentalMovieApp\BulkyBookWeb\bin\Debug\net6.0\Microsoft.NET.StringTools.dll
+C:\Users\Owner\source\repos\RentalMovieApp\BulkyBookWeb\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\Users\Owner\source\repos\RentalMovieApp\BulkyBookWeb\bin\Debug\net6.0\System.CodeDom.dll
+C:\Users\Owner\source\repos\RentalMovieApp\BulkyBookWeb\bin\Debug\net6.0\System.Resources.Extensions.dll

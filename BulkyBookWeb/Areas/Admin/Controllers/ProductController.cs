@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using BulkyBook.Models;
 using BulkyBook.DataAccess.Repository.IRepository;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using BulkyBook.Models.ViewModels;
+//using Microsoft.Build.Tasks.Deployment.Bootstrapper;
 
 namespace BulkyBookWeb.Areas.Admin.Controllers
 {
@@ -8,77 +11,83 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-
-        public ProductController(IUnitOfWork unitOfWork)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public ProductController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
         {
             _unitOfWork = unitOfWork;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<Product> objProductList = _unitOfWork.Product.GetAll();
-            return View(objProductList);
-        }
-
-        public IActionResult Create()
-        {
+            //IEnumerable<Product> objProductList = _unitOfWork.Product.GetAll();
+            //return View(objProductList);
             return View();
         }
 
-
-        //POST
-        [HttpPost]
-        [ValidateAntiForgeryToken] //Help prevent Cross Site Request Forgery Attack
-        public IActionResult Create(Product obj)
-        {
-            //Server side validations
-            if (ModelState.IsValid)
-            {
-                _unitOfWork.Product.Add(obj);
-                _unitOfWork.Save();
-
-                TempData["success"] = "Product type created successfully";
-
-                return RedirectToAction("Index");
-            }
-            return View(obj);
-        }
-
-
         //-----------------------------------------------------------------------------------//
 
-        public IActionResult Edit(int? id)
+        public IActionResult Upsert(int? id)
         {
+            ProductVM productVM = new()
+            {
+                Product = new(),
+                CategoryList = _unitOfWork.Category.GetAll().Select(
+                c => new SelectListItem
+                {
+                    Text = c.Name,
+                    Value = c.Id.ToString()
+                }),
+                CoverList = _unitOfWork.Cover.GetAll().Select(
+                c => new SelectListItem
+                {
+                    Text = c.Name,
+                    Value = c.Id.ToString()
+                }),
+            };
+            
             if (id == null || id == 0)
             {
-                return NotFound();
+                //create product
+                //ViewBag.CategoryList = CategoryList;
+                //ViewData["CoverList"] = CoverList;
+                //return View(product);
+                return View(productVM);
             }
-            // we assume here that id is a primary key
-            //var ProductFromDb = _db.Products.Find(id);
-            // if id is not a primary key, the we can use this method
-            var productFromDbFirst = _unitOfWork.Product.GetFirstOrDefault(c => c.Id == id);
-
-            if (productFromDbFirst == null)
+            else
             {
-                return NotFound();
+                //update
             }
-            return View(productFromDbFirst);
+            return View(productVM);
         }
 
 
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken] //Help prevent Cross Site Request Forgery Attack
-        public IActionResult Edit(Product obj)
+        public IActionResult Upsert(ProductVM obj, IFormFile? file)
         {
             //Server side validations
             if (ModelState.IsValid)
             {
+                string wwwRootPath = _webHostEnvironment.WebRootPath;
+                if (file != null)
+                {
+                    string filename = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(wwwRootPath, @"images\products");
+                    var extension = Path.GetExtension(file.FileName);
+
+                    using (var fileStreams = new FileStream(Path.Combine(uploads, filename + extension), FileMode.Create))
+                    {
+                        file.CopyTo(fileStreams);
+                    }
+                    obj.Product.ImageUrl = @"\images\products" + filename + extension;
+                }
                 // Based on the primary key, it will automatically update all the properties
-                _unitOfWork.Product.Update(obj);
+                _unitOfWork.Product.Add(obj.Product);
                 _unitOfWork.Save();
 
-                TempData["success"] = "Product type updated successfully";
+                TempData["success"] = "Product created successfully";
 
                 return RedirectToAction("Index");
             }
@@ -125,5 +134,15 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
+
+        #region API CALLS
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            //var productList = _unitOfWork.Product.GetAll();
+            var productList = _unitOfWork.Product.GetAll(includeProperties: "Category,Cover");
+            return Json(new {data = productList});
+        }
+        #endregion
     }
 }

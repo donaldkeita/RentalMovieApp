@@ -52,8 +52,7 @@ namespace BulkyBookWeb.Controllers
 
                 return RedirectToAction("Index");
             }
-            return View(obj);
-            
+            return View(obj);         
         }
 
 
