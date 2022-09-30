@@ -45,18 +45,21 @@ namespace BulkyBookWeb.Controllers
             //Server side validations
             if (ModelState.IsValid)
             {
+                // add categgory object to categories list
                 _unitOfWork.Category.Add(obj);
+                // save categgory object to the database
                 _unitOfWork.Save();
-
+                // display temp data message to user interface
                 TempData["success"] = "Category created successfully";
-
+                // return to page index
                 return RedirectToAction("Index");
             }
+            // return model object tom the view
             return View(obj);         
         }
 
 
-        //-----------------------------------------------------------------------------------//
+        //--------------------------------- Update --------------------------------------------//
 
         public IActionResult Edit(int? id)
         {
@@ -102,7 +105,7 @@ namespace BulkyBookWeb.Controllers
             return View(obj);
         }
 
-        //----------------------------------------------------------------------------------------//
+        //------------------------------------ Delete --------------------------------------------//
 
 
         public IActionResult Delete(int? id)
